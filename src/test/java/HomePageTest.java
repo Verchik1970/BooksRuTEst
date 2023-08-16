@@ -37,8 +37,10 @@ public  class HomePageTest {
     @DisplayName("Search button")
     public void testSearchValue()  {
         driver.get("https://www.books.ru/");
-
-        String searchValue =ReadSearch.main();
+        String searchValue = "Чехов";
+/*
+        String searchValue =ReadSearch.main();// читает список из файла??????
+*/
         driver.manage().window().maximize(); // окно в полный размер
         homePage.pageLoading(); // загрузка главной страницы
         homePage.clickPopUpWin(); // закртыие всплывающего окна
