@@ -1,13 +1,17 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 public class HomePage {
     private WebDriver driver;
 
 
-    public HomePage(WebDriver driver) {
+
+    public HomePage(WebDriver driver) throws MalformedURLException {
         this.driver = driver;
     }
 
@@ -24,6 +28,8 @@ public class HomePage {
     private static final String SEARCH_RESULT_COUNT = "//body/div[1]/div[1]/main[1]/div[3]/div[1]/div[1]";
     //карточка объекта книги
     private static final String POP_UP_WIN = "//div[@class='closeX']"; //закрытие всплывающего окна - крестик
+    private static final String LINK_OLD_SITE = "//a[@id='link_old_site']"; // переход на старый сайт
+    URL url = new URL("https://new.books.ru/") ;
     /* ********** Methods ***********
      ****************************************/
     public void pageLoading() {
@@ -58,6 +64,12 @@ public class HomePage {
     public int countResultError(){ //число - в поле Найдено наименований
         driver.findElement(By.xpath(SEARCH_RESULT_MESSAGE)).getText();
         return 0;
+    }
+    public URL getLinkOldSite(){
+        driver.findElement(By.xpath(LINK_OLD_SITE)).click();
+
+
+        return url;
     }
 }
 
