@@ -6,6 +6,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import io.restassured.RestAssured;
 import static io.restassured.RestAssured.given;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
@@ -18,6 +20,7 @@ public  class HomePageTest {
     static HomePage homePage;
 
     @BeforeAll //запуск Хромдрайвера
+    @DisplayName("ChromeDriver Start")
     public static void init() {
         WebDriverManager.chromedriver()
                 .setup();
@@ -32,9 +35,10 @@ public  class HomePageTest {
 
     @Test
     @DisplayName("Search button")
-    public void testSearchValue(){
+    public void testSearchValue()  {
         driver.get("https://www.books.ru/");
-        String searchValue = "Чехов";
+
+        String searchValue =ReadSearch.main();
         driver.manage().window().maximize(); // окно в полный размер
         homePage.pageLoading(); // загрузка главной страницы
         homePage.clickPopUpWin(); // закртыие всплывающего окна
@@ -48,6 +52,7 @@ public  class HomePageTest {
         // проверка что в поле Найдено наименований = 0
     }
     @Test
+    @DisplayName("Проверка кода ответа старого сайта")
     public void testGetReguest(){
         given()
                 .when()
@@ -58,6 +63,7 @@ public  class HomePageTest {
 
 
     @Test
+    @DisplayName("вывод кода старого сайта")
     public void testApiOLdPageCode() {
         Response response = RestAssured.
                 get("https://new.books.ru/").andReturn();
