@@ -1,25 +1,22 @@
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 public class ReadSearch {
-    public static String main() {
+    public static String[] readFromFile (String fileName) throws IOException {
 
-            String fileName = "Search.txt";
-            String line;
+        fileName = "Search.txt";
+        String line;
+        String[] values = new String[10];
+        int i =0;
 
-            try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-                while ((line = br.readLine()) != null) {
-                    String[] values = line.split(",");
-                    for (String value : values) {
-                        System.out.print(value.toString());
-                    }
-                    System.out.println();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        return fileName;
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            while ((line = br.readLine()) != null && i< 10) {
+                values[i++] = br.readLine();}
+            br.close();
+            return values;
+        }
     }
-    }
+}
 
 
