@@ -41,9 +41,9 @@ public class HomePage {
             throw new AssertionError("The 'Main Page' was not loaded");
         }
     }
-    public void inputSearchInput(String searchValue){
+    public void inputSearchInput(String str){
         //ввод поисковой фразы
-        driver.findElement(By.xpath(SEARCH_INPUT)).sendKeys(searchValue);
+        driver.findElement(By.xpath(SEARCH_INPUT)).sendKeys(str);
 
     }
     public void clickSearhButton (){
@@ -70,6 +70,10 @@ public class HomePage {
 
 
         return url;
+    }
+
+    public void clearSearchInput(){
+        driver.findElement(By.xpath(SEARCH_INPUT)).clear();
     }
 }
 

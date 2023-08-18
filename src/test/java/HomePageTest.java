@@ -47,20 +47,25 @@ public  class HomePageTest {
         homePage.pageLoading(); // загрузка главной страницы
         homePage.clickPopUpWin(); // закрытие всплывающего окна
 
-            String[] searchValue = ReadSearch.readFromFile("Search.txt");
-            StringBuilder testWord = new StringBuilder();
+        String[] searchValue = ReadSearch.readFromFile("Search.txt");
+        StringBuilder testWord = new StringBuilder();
+        while (testWord != null) {
             for (String str : searchValue) {
                 testWord.append(str);
                 homePage.inputSearchInput(str);
                 homePage.clickSearhButton(); // нажатие лупы - кнопки поиска
-                driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-            assertTrue(homePage.getResultsCount() > 0, "Search results amount equals zero"); // проверка что на странице
-        //отображаются найденные книги больше 0
+                driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+                assertTrue(homePage.getResultsCount() > 0, "Search results amount equals zero"); // проверка что на странице
+                //отображаются найденные книги больше 0
 
        /* assertEquals(homePage.countResultError(), 0, "Nothing found");
         // проверка что в поле Найдено наименований = 0*/
-                homePage.pageLoading();
-    }
+
+                homePage.clearSearchInput();
+                driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+            }
+        }
     }
 
     @Test
@@ -86,4 +91,5 @@ public  class HomePageTest {
     public static void tearDown() {
         driver.quit();
     }
+
 }
