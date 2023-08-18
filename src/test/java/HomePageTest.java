@@ -49,7 +49,6 @@ public  class HomePageTest {
 
         String[] searchValue = ReadSearch.readFromFile("Search.txt");
         StringBuilder testWord = new StringBuilder();
-        while (testWord != null) {
             for (String str : searchValue) {
                 testWord.append(str);
                 homePage.inputSearchInput(str);
@@ -66,7 +65,7 @@ public  class HomePageTest {
 
             }
         }
-    }
+
 
     @Test
     @DisplayName("Проверка кода ответа старого сайта")

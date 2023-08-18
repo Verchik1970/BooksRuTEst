@@ -4,15 +4,14 @@ import java.io.FileReader;
 import java.io.IOException;
 public class ReadSearch {
     public static String[] readFromFile (String fileName) throws IOException {
-
         fileName = "Search.txt";
-        String line;
-        String[] values = new String[10];
-        int i =0;
+        String[] values = new String[6];
 
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            while ((line = br.readLine()) != null && i< 10) {
-                values[i++] = br.readLine();}
+            for (int i = 0; i < values.length; i++) {
+                values[i] = br.readLine();
+                System.out.println(values[i]);
+            }
             br.close();
             return values;
         }
