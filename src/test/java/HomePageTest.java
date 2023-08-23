@@ -1,5 +1,9 @@
+import io.qameta.allure.Allure;
+import io.qameta.allure.Attachment;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,6 +13,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import static io.github.bonigarcia.wdm.WebDriverManager.*;
 import static io.restassured.RestAssured.given;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Arrays;
@@ -31,6 +36,8 @@ public  class HomePageTest {
         chromedriver()
                 .setup();
         driver = new ChromeDriver(options);
+        /*WebDriver driver = new ChromeDriver();
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver-win64\\chromedriver.exe");*/
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         try {
             homePage = new HomePage(driver);
@@ -53,6 +60,8 @@ public  class HomePageTest {
                 testWord.append(str);
                 homePage.inputSearchInput(str);
                 homePage.clickSearhButton(); // нажатие лупы - кнопки поиска
+                Allure.addAttachment("ВВод тестового слова", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
+                ;
                 driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
                 assertTrue(homePage.getResultsCount() > 0, "Search results amount equals zero"); // проверка что на странице
                 //отображаются найденные книги больше 0
