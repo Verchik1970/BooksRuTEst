@@ -1,4 +1,5 @@
 import io.qameta.allure.Allure;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.OutputType;
@@ -47,4 +48,5 @@ public static void initChrome(){
 
 
     }
+
 }
