@@ -28,6 +28,8 @@ public class InitChromeDriver {
         /*WebDriver driver = new ChromeDriver();
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver-win64\\chromedriver.exe");*/
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+
         try {
             homePage = new HomePage(driver);
         } catch (MalformedURLException e) {
